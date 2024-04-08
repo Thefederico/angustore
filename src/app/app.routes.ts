@@ -1,3 +1,32 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
-export const routes: Routes = [];
+import { ListComponent } from "@products/pages/list/list.component";
+import { NotFoundComponent } from "@info/pages/not-found/not-found.component";
+import { AboutComponent } from "./modules/info/pages/about/about.component";
+import { LayoutComponent } from "./modules/shared/components/layout/layout.component";
+import { ProductDetailComponent } from "./modules/products/pages/product-detail/product-detail.component";
+
+export const routes: Routes = [
+  {
+    path: "",
+    component: LayoutComponent,
+    children: [
+      {
+        path: "",
+        component: ListComponent,
+      },
+      {
+        path: "about",
+        component: AboutComponent,
+      },
+      {
+        path: "product/:id",
+        component: ProductDetailComponent,
+      },
+    ],
+  },
+  {
+    path: "**",
+    component: NotFoundComponent,
+  },
+];
